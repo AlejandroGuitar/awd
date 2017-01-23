@@ -1,0 +1,443 @@
+
+def LeagueChampSelect():
+
+    #List of champions and their counters
+    champions = {'aatrox': ['jax', 'teemo', 'pantheon', 'fiora', 'renekton', 'riven'],
+                 'ahri': ['leblanc', 'swain', 'yasuo', 'diana', 'talon', 'syndra'],
+                 'akali': ['lee sin', 'rumble', 'mordekaiser', 'annie', 'malzahar', 'garen'],
+                 'alistar': ['janna', 'tristana', 'vayne', 'lulu', 'morgana'],
+                 'amumu': ['shyvana', 'lee sin', 'xin zhao', 'shaco', 'ekko', 'irelia'],
+                 'anivia': ['fizz', 'diana', 'kassadin', 'orianna', 'leblanc', 'nautilus'],
+                 'annie': ['brand', 'sion', 'orianna', 'lux', 'leblanc', 'morgana'],
+                 'ashe': ['ezreal', 'jinx', "kha'zix", 'draven', 'sivir', 'graves'],
+                 'aurelion sol': ['ekko', 'leblanc', 'akali', 'ahri', 'darius', 'morgana'],
+                 'azir': ['ziggs', 'talon', 'xerath', 'syndra', 'fizz', 'ahri'],
+                 'bard': ['morgana', 'sivir', 'teemo', 'blitzcrank', 'thresh', 'jarvan'],
+                 'blitzcrank': ['leona', 'morgana', 'alistar', 'sivir', 'ezreal', 'thresh'],
+                 'brand': ['galio', 'kassadin', 'zed', 'leblanc', 'fizz', 'akali'],
+                 'braum': ['morgana', 'zyra', 'karma', 'lulu', 'soraka', 'leona'],
+                 'caitlyn': ['sivir', 'jinx', 'varus', 'braum', 'jinx', 'tristana'],
+                 'camille': ['illaoi', 'poppy', 'jax', 'fiora', 'malphite', 'aatrox'],
+                 'cassiopeia': ['galio', 'diana', 'talon', 'leblanc', 'lux', 'veigar'],
+                 "cho'gath": ['warwick', "kog'maw", 'renekton', 'jax', 'vayne', 'kayle'],
+                 'corki': ['caitlyn', 'draven', 'leblanc', 'ashe', 'urgot', 'graves'],
+                 'darius': ['yorick', 'kayle', 'jayce', 'zed', 'jax', 'teemo'],
+                 'diana': ['mordekaiser', "cho'gath", 'irelia', 'heimerdinger', 'syndra', 'swain'],
+                 'dr. mundo': ['olaf', 'fizz', 'trundle', "kog'maw", 'shyvana', 'riven'],
+                 'draven': ['varus', 'thresh', 'blitzcrank', 'nami', 'caitlyn', 'quinn'],
+                 'ekko': ['leblanc', "cho'gath", 'diana', 'xin zhao', 'tryndamere', 'heimerdinger'],
+                 'elise': ['kassadin', 'yorick', 'wukong', 'gangplank', 'mordekaiser', 'malzahar'],
+                 'evelynn': ['ryze', "rek'sai", 'kassadin', 'twisted fate', 'caitlyn', 'ahri'],
+                 'ezreal': ['draven', 'graves', 'miss fortune', 'kalista', 'akali', 'twitch'],
+                 'fiddlesticks': ['evelynn', 'janna', 'xin zhao', 'tristana', 'diana', 'kassadin'],
+                 'fiora': ['jax', 'pantheon', 'riven', 'renekton', 'darius', 'singed'],
+                 'fizz': ['kayle', 'lissandra', 'ryze', 'mordekaiser', 'annie', 'diana'],
+                 'galio': ['udyr', 'braum', 'irelia', 'janna', 'yasuo', 'malphite'],
+                 'gangplank': ['pantheon', 'fiora', 'poppy', 'riven', 'udyr', 'jax'],
+                 'garen': ['teemo', 'gnar', 'elise', 'darius', 'pantheon', 'yorick'],
+                 'gnar': ['wukong', 'nidalle', 'pantheon', 'irelia', 'fiora', 'jayce'],
+                 'gragas': ['yasuo', 'ahri', 'leblanc', 'annie', 'evelynn'],
+                 'graves': ['caitlyn', 'sivir', 'urgot', 'corki', 'miss fortune', 'draven'],
+                 'hecarim': ['nasus', 'sejuani', 'aatrox', 'vi', 'garen'], 
+                 'heimerdinger': ['syndra', 'xerath', 'malzahar', 'lux', 'ziggs', 'brand'],
+                 'illaoi': ['lulu', 'vayne', 'jarvan', 'tryndamere', 'fiora', 'nasus'],
+                 'irelia': ['olaf', 'udyr', 'garen', 'darius', 'nasus', 'pantheon'],
+                 'ivern': ['urgot', "kha'zix", 'rengar', 'lee sin', 'illaoi', 'amumu'],
+                 'janna': ['sona', 'nami', 'blitzcrank', 'diana', 'sivir', 'dr. mundo'],
+                 'jarvan': ['yorick', 'elise', 'renekton', 'vi', 'lee sin', 'jax'],
+                 'jax': ['malphite', 'pantheon', 'renekton', 'singed', 'ryze', 'jayce'],
+                 'jayce': ['yorick', 'xin zhao', 'fiora', 'pantheon', 'wukong', 'irelia'],
+                 'jhin': ['vayne', 'jinx', 'braum', 'caitlyn', 'tristana', 'miss fortune'],
+                 'jinx': ['ezreal', 'corki', 'sivir', 'quinn', 'varus', 'draven'],
+                 'kalista': ['ashe', 'caitlyn', 'graves', 'vayne', 'master yi', 'quinn'],
+                 'karma': ['veigar', 'swain', 'malzahar', 'xerath', 'nami', 'talon'],
+                 'karthus': ['soraka', 'kassadin', 'fizz', 'leblanc', 'katarina', 'lux'],
+                 'kassadin': ['talon', 'pantheon', 'heimerdinger', "kha'zix", 'zed', 'mordekaiser'],
+                 'katarina': ['diana', 'fiddlesticks', 'malzahar', 'lissandra', 'lulu', 'riven'],
+                 'kayle': ['annie', 'orianna', 'pantheon', 'ziggs', 'xin zhao', 'gragas'],
+                 'kennen': ['diana', 'janna', 'vladimir', 'yorick', 'swain', 'leblanc'],
+                 "kha'zix": ['lee sin', 'yorick', 'pantheon', 'jayce', 'rengar', 'tryndamere'],
+                 'kindred': ['lee sin', 'diana', 'gragas', 'vayne', 'jax', 'swain'],
+                 'kled': ['yasuo', 'tahm kench', 'fiora', 'jax', 'teemo'],
+                 "kog'maw": ['blitzcrank', 'lucian', 'miss fortune', 'poppy', 'ashe', 'jinx'],
+                 'leblanc': ['galio', 'morgana', 'talon', 'syndra', 'diana', 'annie'],
+                 'lee sin': ['trundle', 'pantheon', 'udyr', 'riven', 'renekton'],
+                 'leona': ['morgana', 'alistar', 'janna', 'lulu', 'karma', 'zyra'],
+                 'lissandra': ['kassadin', 'syndra', 'diana', 'anivia', 'brand', 'leblanc'],
+                 'lucian': ['vayne', 'draven', 'tristana', 'graves', 'caitlyn'],
+                 'lulu': ['orianna', 'soraka', 'syndra', 'brand', 'ziggs', 'sona'],
+                 'lux': ['talon', 'gragas', 'fizz', 'yasuo', 'zed', 'kassadin'],
+                 'malphite': ['rumble', 'olaf', 'shen', 'yorick', "cho'gath"],
+                 'malzahar': ['gangplank', 'syndra', 'morgana', 'galio', 'talon', 'annie'],
+                 'maokai': ['shyvana', 'nasus', 'pantheon', 'swain', 'yorick', 'dr. mundo'],
+                 'master yi': ['jax', 'pantheon', 'tryndamere', 'teemo', 'rammus', "cho'gath"],
+                 'miss fortune': ['tristana', 'draven', 'quinn', 'taric', 'caitlyn', 'braum'],
+                 'mordekaiser': ['lux', 'zyra', 'brand', 'yorick', 'malzahar', 'cassiopeia'],
+                 'morgana': ['karma', 'talon', 'zed', 'vladimir', 'fizz', 'janna'],
+                 'nami': ['lulu', 'ezreal', 'fizz', 'blitzcrank', 'leona', 'yasuo'],
+                 'nasus': ['olaf', 'teemo', 'rumble', 'pantheon', 'ryze', 'darius'],
+                 'nautilus': ['shyvana', 'olaf', 'yorick', 'shaco', 'vi', 'morgana'],
+                 'nidalee': ['yasuo', 'pantheon', 'zed', 'akali', 'leblanc', 'fizz'],
+                 'nocturne': ['olaf', 'lee sin', 'tryndamere', 'udyr', 'shyvana', 'aatrox'],
+                 'nunu': ['cassiopeia', 'sona', 'sivir', 'soraka', 'riven', 'taric'],
+                 'olaf': ['kayle', 'elise', 'yorick', 'talon', 'pantheon', 'kennen'],
+                 'orianna': ['syndra', 'ziggs', 'diana', 'zed', 'leblanc', 'gragas'],
+                 'pantheon': ['olaf', 'elise', 'shen', 'darius', 'malphite', 'udyr'],
+                 'poppy': ['olaf', 'kennen', 'darius', 'renekton', 'teemo', 'rumble'],
+                 'quinn': ['caitlyn', 'varus', 'miss fortune', 'caitlyn', 'graves', 'tristana'],
+                 'rammus': ['trundle', 'soraka', "rek'sai", 'morgana', 'vi', 'shyvana'],
+                 "rek'sai": ['fizz', 'darius', 'irelia', 'jayce', 'kennen', 'jayce'],
+                 'renekton': ['trundle', 'vayne', 'elise', 'garen', 'olaf', 'kennen'],
+                 'rengar': ['jax', 'fiora', 'pantheon', 'renekton', 'lee sin', 'darius'],
+                 'riven': ['garen', 'pantheon', 'kennen', 'olaf', 'darius', "cho'gath"],
+                 'rumble': ['yorick', 'viktor', 'elise', 'tryndamere', 'darius', 'xin zhao'],
+                 'ryze': ['cassiopeia', 'orianna', 'xerath', 'ziggs', 'anivia', 'lux'],
+                 'sejuani': ['xin zhao', 'evelynn', 'twitch', 'vi', 'pantheon', 'elise'],
+                 'shaco': ['lee sin', 'udyr', 'shyvana', "rek'sai", 'vi', 'warwick'],
+                 'shen': ['yorick', 'jayce', 'warwick', 'vladimir', 'teemo', 'darius'],
+                 'shyvana': ['olaf', 'pantheon', 'trundle', 'elise', 'ryze', 'lee sin'],
+                 'singed': ['teemo', 'kayle', 'gnar', 'elise', 'vladimir', 'jayce'],
+                 'sion': ['pantheon', 'garen', 'riven', 'darius', 'jax', 'nasus'],
+                 'sivir': ['vayne', 'draven', 'twitch', "kog'maw", "kha'zix", 'tristana'],
+                 'skarner': ['morgana', 'trundle', 'xin zhao', 'gangplank', 'cassiopeia'],
+                 'sona': ['blitzcrank', 'leona', 'thresh', 'miss fortune', 'draven', 'nautilus'],
+                 'soraka' : ['gnar', 'miss fortune', 'blitzcrank', 'varus', 'kayle', 'zac'],
+                 'swain' : ['viktor', 'lux', 'syndra', 'leblanc', 'galio', 'cassiopeia'],
+                 'syndra' : ['fizz', 'kayle', 'yasuo', 'talon', 'kassadin', 'lux'],
+                 'tahm kench' : ['janna', 'vayne', 'singed', 'gnar', 'jax', 'kayle'],
+                 'taliyah': ['katarina', 'fizz', 'leblanc', 'morgana', 'lee sin', 'zed'],
+                 'talon': ['yorick', 'lee sin', 'pantheon', 'diana', 'mordekaiser', 'kayle'],
+                 'taric': ['sivir', 'lulu', 'morgana', 'nami', 'varus', 'corki'],
+                 'teemo': ['yorick', 'pantheon', 'akali', 'rumble', 'wukong', "cho'gath"],
+                 'thresh': ['lulu', 'morgana', 'alistar', 'lucian', 'janna', 'zyra'],
+                 'tristana': ['corki', 'diana', 'lucian', 'draven', 'sivir', 'twitch'],
+                 'trundle': ['ziggs', 'darius', 'pantheon', 'kennen', 'sona', 'vladimir'],
+                 'tryndamere': ['teemo', 'rammus', 'pantheon', 'renekton', 'jax', "cho'gath"],
+                 'twisted fate': ['fizz', 'diana', 'yasuo', 'kassadin', 'leblanc', 'akali'],
+                 'twitch': ['lee sin', 'caitlyn', 'corki', 'jinx', 'quinn', 'draven'],
+                 'udyr': ['ashe', 'elise', 'jax', 'kayle', 'trundle', 'teemo'],
+                 'urgot': ['karthus', 'draven', 'bard', 'braum', 'janna', 'alistar'],
+                 'varus': ['graves', 'lucian', 'sivir', 'blitzcrank', 'leona', 'tristana'],
+                 'vayne': ['caitlyn', 'quinn', 'draven', 'tristana', 'ashe', 'varus'],
+                 'veigar': ['fizz', 'talon', 'zed', 'leblanc', 'kassadin', 'ryze'],
+                 "vel'koz": ['yasuo', 'leblanc', 'fizz', 'talon', 'akali', 'zed'],
+                 'vi': ['riven', 'pantheon', 'jax', 'lee sin', 'darius', 'teemo'],
+                 'viktor': ['brand', 'ziggs', 'zed', 'syndra', 'talon', 'leblanc'],
+                 'vladimir': ['swain', 'jarvan', 'fiddlesticks', 'malzahar', 'xin zhao', 'irelia'],
+                 'volibear': ['teemo', 'elise', 'kayle', 'darius', 'jayce', 'renekton'],
+                 'warwick': ['yorick', 'renekton', 'kayle', 'udyr', 'olaf', 'nocturne'],
+                 'wukong': ['lee sin', 'darius', 'pantheon', 'garen', 'olaf', 'renekton'],
+                 'xerath': ['ahri', 'zed', 'syndra', 'gragas', 'fizz', 'kassadin'],
+                 'xin zhao': ['jax', 'pantheon', 'fiora', 'malhpite', 'teemo'],
+                 'yasuo': ['jax', 'malzahar', 'kayle', 'fiora', 'darius', 'swain'],
+                 'yorick': ["cho'gath", 'nunu', 'trundle', 'lee sin', 'xin zhao', 'aatrox'],
+                 'zac': ['vi', 'zilean', 'yorick', 'vladimir', 'renekton', 'fizz'],
+                 'zed': ['kayle', 'jax', 'lissandra', 'kayle', 'irelia', 'malzahar'],
+                 'ziggs': ['leblanc', 'syndra', 'talon', 'yasuo', 'xerath', 'brand'],
+                 'zilean': ['annie', 'sivir', 'blitzcrank', 'amumu', 'morgana', 'lux'],
+                 'zyra': ['fizz', 'katarina', 'talon', 'leblanc', 'diana', 'kassadin']}
+
+
+    #List of just champions
+    listofchampions = ("aatrox, ahri, akali, alistar, amumu, anivia, annie, ashe, aurelion sol, "
+                       "azir, bard, blitzcrank, brand, braum, caitlyn, camille, cassiopeia, chogath, "
+                       "corki, darius, diana, dr. mundo, draven, ekko, elise, evelynn, ezreal, fiddlesticks, "
+                       "fiora, fizz, galio, gangplank, garen, gnar, gragas, graves, hecarim, heimerdinger, "
+                       "illaoi, irelia, ivern, janna, jarvan, jax, jayce, jhin, jinx, kalista, karma, "
+                       "karthus, kassadin, katarina, kayle, kennen, kha'zix, kindred, kled, kog'maw, "
+                       "leblanc, lee sin, leona, lissandra, lucian, lulu, lux, malphite, malzahar, maokai, "
+                       "master yi, miss fortune, mordekaiser, morgana, nami, nasus, nautilus, nidalee, "
+                       "nocturne, nunu, olaf, janna, pantheon, poppy, quinn, rammus, rek'sai, renekton, "
+                       "rengar, riven, rumble, ryze, sejuani, shaco, shen, shyvana, singed, sion, sivir, "
+                       "skarner, sona, soraka, swain, syndra, tahm kench, taliyah, talon, taric, teemo, "
+                       "thresh, tristana, trundle, tryndamere, twisted fate, twitch, udyr, urgot, varus, "
+                       "vayne, veigar, vel'koz, vi, viktor, vladimir, volibear, warwick, wukong, xerath, "
+                       "xin zhao, yasuo, yorick, zac, zed, ziggs, zilean, zyra")
+    
+    #Lists people and the champions that each person can play
+    ale = {'aletop': ['karthus', 'malphite', 'mundo', 'morgana',
+              'jayce', 'shen', 'udyr', 'trundle', 'nasus'],
+           'alejung': ['zac', 'mundo', 'malphite', 'ivern', 'udyr', 'lee sin',
+                       'elise', 'olaf', "rek'sai", 'xin zhao', 'nunu'],
+           'alemid': ['jayce', 'malphite', 'lux', 'morgana', 'karthus'],
+           'aleadc': ['ezreal'],
+           'alesupp': ['blitz', 'nautilus', 'morgana']}
+
+    alex = {'alextop': ['illaoi', 'darius', 'teemo', 'jax', 'pantheon',
+               'kayle', 'kennen', 'jarvan', 'trundle', 'tryndamere', 'quinn'],
+            'alexjung': ['graves', 'sejuani', 'rammus', 'nautilus', 'master yi', 'jarvan',
+                'xin zhao', "kha'zix"],
+            'alexmid': ['veigar', 'orianna', 'lux', 'brand',
+               'annie', 'kayle', 'kennen',
+               'viktor', 'jarvan', 'syndra', 'karma'],
+            'alexadc': ['twitch', 'ezreal', 'corki'],
+            'alexsupp': ['annie', 'blitz', 'brand', 'thresh', 'karma']}
+
+    gerald = {'geraldtop': ['illaoi', 'yorick'],
+              'geraldjung': ['kindred'],
+              'geraldmid': ['viktor', 'malzahar'],
+              'geraldadc': ['caitlyn', 'jhin', 'ezreal'],
+              'geraldsupp': ['teemo']}
+
+    kendrick = {'kendricktop': ['lee sin', 'poppy'],
+                'kendrickjung': ['lee sin'],
+                'kendrickmid': ['lux', 'blitz'],
+                'kendrickadc': ['ezreal'],
+                'kendricksupp': ['lee sin', 'thresh', 'blitz', 'nautilus', 'braum']}
+
+    sebastian = {'sebastiantop': ['poppy', 'nautilus', 'sion'],
+                 'sebastianjung': ['nidalee'],
+                 'sebastianmid': ['twisted fate', 'lux', 'fizz'],
+                 'sebastianadc': ['ezreal'],
+                 'sebastiansupp': ['blitz']}
+    
+    tung = {'tungtop': ['lee sin'],
+            'tungjung': ['akali', 'lee sin'],
+            'tungmid': ['lux', 'orianna', 'fizz'],
+            'tungadc': ['caitlyn', 'vayne'],
+            'tungsupp': ['janna', 'nami', 'sona', 'leona', 'thresh', 'braum']}
+
+    vince = {'vincetop': ["cho'gath", 'jax', 'trundle'],
+             'vincejung': ['xin zhao', 'sejuani', 'nautilus', 'amumu'],
+             'vincemid': ['anivia', 'orianna', 'fizz', 'veigar', 'zed'],
+             'vinceadc': ['twitch', 'ashe', 'caitlyn', 'kalista'],
+             'vincesupp': ['blitz', 'thresh', 'sona', 'braum']}
+
+    #Tells the user what the program is and what to do with the program
+    print("\n" * 2)
+    print("Type in the champion you wish to counter followed by the enter key.")
+    print("\n")
+    print("All champion names must be typed in correctly. \nFor example: Dr. Mundo, Jarvan (no IV required), Cho'Gath, etc.")
+    print("\n")
+    print("If you have trouble deciding or want to check spelling, you can print all the champions by typing in list.")
+    print("\n")
+    champion_against = str(input("What champion are you up against? "))
+    if champion_against.lower() == 'list':
+        print("\n")
+        print(listofchampions)
+        print("\n")
+    
+    #Check for the counters of the champion that was inputted and prints them
+    for counter in champions:
+        
+        if champion_against.lower() == counter:
+            print("\n")
+            print("Here are the champions that %s is weak against in order of how hard they counter with the champion on the left being the hardest counter: " % counter)
+            print("\n")
+            print(champions[counter])
+            print("\n")
+            
+            #Check if the counters are among the list of playable champions available among the players,
+            #then prints who can play them.  
+            for checkchamps in range(0,len(champions[counter])):
+                     
+                #Check for Ale'
+                for playablechamps in range(0, len(ale['aletop'])):
+                    check_playable_champs = ale['aletop']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] != checkcounters[checkchamps]:
+                        pass
+                    else:
+                        print("Ale' can play %s top." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(ale['alejung'])):
+                    check_playable_champs = ale['alejung']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Ale' can play %s jungle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(ale['alemid'])):
+                    check_playable_champs = ale['alemid']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Ale' can play %s middle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(ale['aleadc'])):
+                    check_playable_champs = ale['aleadc']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Ale' can play %s ad carry." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(ale['alesupp'])):
+                    check_playable_champs = ale['alesupp']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Ale' can play %s support." % check_playable_champs[playablechamps])
+                        
+                #Check for Alex
+                for playablechamps in range(0, len(alex['alextop'])):
+                    check_playable_champs = alex['alextop']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Alex can play %s top." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(alex['alexjung'])):
+                    check_playable_champs = alex['alexjung']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Alex can play %s jungle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(alex['alexmid'])):
+                    check_playable_champs = alex['alexmid']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Alex can play %s middle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(alex['alexadc'])):
+                    check_playable_champs = alex['alexadc']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Alex can play %s ad carry." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(alex['alexsupp'])):
+                    check_playable_champs = alex['alexsupp']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Alex can play %s support." % check_playable_champs[playablechamps])
+
+                #Check for Gerald
+                for playablechamps in range(0, len(gerald['geraldtop'])):
+                    check_playable_champs = gerald['geraldtop']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Gerald can play %s top." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(gerald['geraldjung'])):
+                    check_playable_champs = gerald['geraldjung']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Gerald can play %s jungle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(gerald['geraldmid'])):
+                    check_playable_champs = gerald['geraldmid']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Gerald can play %s middle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(gerald['geraldadc'])):
+                    check_playable_champs = gerald['geraldadc']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Gerald can play %s ad carry." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(gerald['geraldsupp'])):
+                    check_playable_champs = gerald['geraldsupp']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Gerald can play %s support." % check_playable_champs[playablechamps])
+                        
+                #Check for Kendrick
+                for playablechamps in range(0, len(kendrick['kendricktop'])):
+                    check_playable_champs = kendrick['kendricktop']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Kendrick can play %s top." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(kendrick['kendrickjung'])):
+                    check_playable_champs = kendrick['kendrickjung']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Kendrick can play %s jungle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(kendrick['kendrickmid'])):
+                    check_playable_champs = kendrick['kendrickmid']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Kendrick can play %s middle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(kendrick['kendrickadc'])):
+                    check_playable_champs = kendrick['kendrickadc']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Kendrick can play %s ad carry." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(kendrick['kendricksupp'])):
+                    check_playable_champs = kendrick['kendricksupp']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Kendrick can play %s support." % check_playable_champs[playablechamps])
+                        
+                #Check for Sebastian
+                for playablechamps in range(0, len(sebastian['sebastiantop'])):
+                    check_playable_champs = sebastian['sebastiantop']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Sebastian can play %s top." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(sebastian['sebastianjung'])):
+                    check_playable_champs = sebastian['sebastianjung']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Sebastian can play %s jungle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(sebastian['sebastianmid'])):
+                    check_playable_champs = sebastian['sebastianmid']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Sebastian can play %s middle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(sebastian['sebastianadc'])):
+                    check_playable_champs = sebastian['sebastianadc']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Sebastian can play %s ad carry." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(sebastian['sebastiansupp'])):
+                    check_playable_champs = sebastian['sebastiansupp']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Sebastian can play %s support." % check_playable_champs[playablechamps])
+
+                #Check for Tung
+                for playablechamps in range(0, len(tung['tungtop'])):
+                    check_playable_champs = tung['tungtop']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Tung can play %s top." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(tung['tungjung'])):
+                    check_playable_champs = tung['tungjung']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Tung can play %s jungle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(tung['tungmid'])):
+                    check_playable_champs = tung['tungmid']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Tung can play %s middle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(tung['tungadc'])):
+                    check_playable_champs = tung['tungadc']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Tung can play %s ad carry." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(tung['tungsupp'])):
+                    check_playable_champs = tung['tungsupp']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Tung can play %s support." % check_playable_champs[playablechamps])
+
+                #Check for Vince
+                for playablechamps in range(0, len(vince['vincetop'])):
+                    check_playable_champs = vince['vincetop']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Vince can play %s top." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(vince['vincejung'])):
+                    check_playable_champs = vince['vincejung']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Vince can play %s jungle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(vince['vincemid'])):
+                    check_playable_champs = vince['vincemid']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Vince can play %s middle." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(vince['vinceadc'])):
+                    check_playable_champs = vince['vinceadc']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Vince can play %s ad carry." % check_playable_champs[playablechamps])
+                for playablechamps in range(0, len(vince['vincesupp'])):
+                    check_playable_champs = vince['vincesupp']
+                    checkcounters = champions[counter]
+                    if check_playable_champs[playablechamps] == checkcounters[checkchamps]:
+                        print("Vince can play %s support." % check_playable_champs[playablechamps])
+                        
+
+    #Checks for odd inputs and redirects back to the start
+    anotherchampionornot = str(input("Type in a valid champion after inputting Y followed by the enter key. N followed by the enter key will close the program. Y/N  "))
+        
+    if anotherchampionornot.lower() == 'y':
+        LeagueChampSelect()
+        
+    if anotherchampionornot.lower() == 'n':
+        exit()
+
+    while anotherchampionornot.lower() != 'y' or 'n':
+        anotherchampionornot = str(input("Type in a valid reponse. Y followed by the enter key will take you back to the main screen. N followed by the enter key will close the program. Y/N  "))
+        if anotherchampionornot.lower() == 'y':
+            LeagueChampSelect()
+        if anotherchampionornot.lower() == 'n':
+            exit()
+            
+
+LeagueChampSelect()
